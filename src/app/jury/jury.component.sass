@@ -1,0 +1,152 @@
+@import vars
+@import mixins
+
+.jury
+  width: 100%
+  border-collapse: collapse
+  display: grid
+  grid-template-columns: 48px minmax(48px, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto) 200px
+  max-height: 600px
+  overflow-y: auto
+  thead,
+  tbody,
+  tr
+    display: contents
+  &._state-2,
+  &._state-1
+    grid-template-columns: 48px minmax(48px, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto)
+    ._full
+      grid-column: span 6
+
+.head
+  &-cell
+    display: flex
+    align-items: center
+    height: 32px
+    padding: 0 6px
+    background-color: $color-grey-extra-light
+    &:first-child
+      border-top-left-radius: 16px
+      border-bottom-left-radius: 16px
+    &:last-child
+      border-top-right-radius: 16px
+      border-bottom-right-radius: 16px
+    &._sort
+      cursor: pointer
+
+.body
+  &-cell
+    display: flex
+    align-items: center
+    padding: 12px 6px
+    position: relative
+    &._full
+      grid-column: span 7
+      display: block
+      padding-right: 0
+
+.cell
+  @include text-default(400)
+  padding: 4px 12px
+  display: flex
+  border-radius: 8px
+  &._head
+    @include text-sm(700)
+    white-space: nowrap
+    padding: 4px 12px
+    position: relative
+  &._marked
+    background-color: $color-grey-extra-light
+
+.badge
+  @include text-u-sm()
+  color: #fff
+  padding: 6px 12px
+  border-radius: 34px
+  width: 16px
+  text-align: center
+  &._winner
+    background-color: #FAB44C
+    box-shadow: 0px 8px 18px rgba(250, 180, 76, 0.3)
+  &._second
+    background-color: #959595
+    box-shadow: 0px 4px 16px #BDBDBD
+  &._third
+    background: #9D6549
+    box-shadow: 0px 4px 16px rgba(134, 111, 100, 0.57)
+  &._common
+    color: #312B2A
+  &._loser
+    background-color: #FAF0EE
+    width: 24px
+    padding: 2px 8px
+
+.sort
+  display: none
+  transform-origin: center
+  position: absolute
+  top: 50%
+  margin-top: -8px
+  right: -4px
+  &._active
+    display: block
+  &._reverse
+    transform: rotate(180deg)
+
+.sort-tick
+  background-image: url($i-tick-black)
+  width: 16px
+  height: 16px
+.loser
+  background-image: url($i-reject)
+  width: 24px
+  height: 24px
+  background-size: contain
+.winner
+  background-image: url($i-winner)
+  width: 16px
+  height: 16px
+.vice-winner
+  background-image: url($i-vice-winner)
+  width: 16px
+  height: 16px
+.tick
+  background-image: url($i-tick-grey-big)
+.pdf
+  background-image: url($i-pdf)
+  margin-right: 16px
+.forum
+  background-image: url($i-forum)
+
+
+.input
+  @include text-default(400)
+  height: 40px
+  width: 100%
+  display: block
+  background: #F6F6F6
+  border-radius: 56px
+  padding: 0 20px
+  border: none
+  outline: none
+  transition: all .3s ease
+  border: 1px solid transparent
+  &:hover
+    background: #EDEDED
+  &:focus
+    box-shadow: 0px 8px 20px rgba(88, 82, 77, 0.24)
+    background: #fff
+    border: 1px solid #EDEDED
+  &:not(:placeholder-shown)
+    background: #fff
+    border: 1px solid #EDEDED
+  &-desc
+    position: absolute
+    top: 50%
+    right: 20px
+    transform: translateY(-50%)
+    @include text-default(500)
+
+.text
+  padding-right: 16px
+  @include text-sm(500)

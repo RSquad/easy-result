@@ -1,0 +1,132 @@
+<table class="subms {{ '_state-' + contestState }}">
+  <thead class="head">
+    <tr class="head-row">
+      <th
+        class="head-cell {{ col.sort && '_sort' }}"
+        *ngFor="let col of contestState === 3 ? cols : cols.slice(0, 9)"
+        (click)="col.sort && onSortClick(col.key)"
+      >
+        <div class="cell _head">
+          {{ col.title }}
+          <div
+            class="sort {{ sort.key === col.key && '_active' }} {{
+              sort.order === 'ASC' && '_reverse'
+            }}"
+          >
+            <div class="g-icon sort-tick"></div>
+          </div>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody class="body">
+    <ng-container *ngFor="let subm of sortedSubms">
+      <tr class="body-row">
+        <td class="body-cell">
+          <div class="cell" (click)="onTickClick(subm.id)">
+            <div class="tick g-icon"></div>
+          </div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ subm.id }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell">{{ subm.addr | prune }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell" style="white-space: nowrap">
+            {{ subm.appliedAt | date: "MMM dd, HH:mm":"+0000" }}
+          </div>
+        </td>
+        <td class="body-cell">
+          <div class="cell">
+            <a
+              class="pdf g-icon"
+              target="_blank"
+              href="{{ subm.fileLink }}"
+            ></a>
+            <a
+              class="forum g-icon"
+              target="_blank"
+              href="{{ subm.forumLink }}"
+            ></a>
+          </div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ subm.avgPoints | number }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ subm.rejects }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ subm.abstains }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ subm.totalPoints }}</div>
+        </td>
+        <ng-container *ngIf="contestState == 3">
+          <td class="body-cell" *ngIf="type == 'points'">
+            <div
+              class="badge _loser"
+              *ngIf="results.places[subm.id] == 999999999"
+            >
+              <div class="g-icon loser"></div>
+            </div>
+            <div class="badge _winner" *ngIf="results.places[subm.id] == '1'">
+              <div class="g-icon winner"></div>
+            </div>
+            <div class="badge _second" *ngIf="results.places[subm.id] == '2'">
+              <div class="g-icon vice-winner"></div>
+            </div>
+            <div class="badge _third" *ngIf="results.places[subm.id] == '3'">
+              3
+            </div>
+            <div
+              class="badge _common"
+              *ngIf="
+                results.places[subm.id] != 999999999 &&
+                results.places[subm.id] != '1' &&
+                results.places[subm.id] != '2' &&
+                results.places[subm.id] != '3'
+              "
+            >
+              {{ results.places[subm.id] }}
+            </div>
+          </td>
+        </ng-container>
+        <td class="body-cell" *ngIf="type == 'bool'">
+          <div class="badge _winner" *ngIf="results.places[subm.id] == 1">
+            <div class="g-icon winner"></div>
+          </div>
+          <div
+            class="badge _loser"
+            *ngIf="results.places[subm.id] == 999999999"
+          >
+            <div class="g-icon loser"></div>
+          </div>
+        </td>
+        <td class="body-cell" *ngIf="contestState == 3">
+          <ng-container *ngIf="results.places[subm.id] != 999999999">
+            <input
+              type="text"
+              class="input"
+              (change)="onRewardChange(subm.id, $event)"
+            />
+            <div class="input-desc">TON</div>
+          </ng-container>
+          <ng-container *ngIf="results.places[subm.id] == 999999999">
+            <div class="text">
+              Submission rejected and&nbsp;will&nbsp;not get reward
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+      <tr class="body-row" *ngIf="activeSubmId === subm.id">
+        <td class="body-cell"></td>
+        <td class="body-cell _full">
+          <app-votes [votes]="subm.votes"></app-votes>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

@@ -1,0 +1,91 @@
+@import vars
+@import mixins
+
+.type
+  height: 48px
+  display: flex
+  align-items: center
+  cursor: pointer
+  &-option
+    @include text-default(500)
+  &-switch
+    width: 32px
+    height: 20px
+    border: 2px solid #312B2A
+    border-radius: 20px
+    box-sizing: border-box
+    position: relative
+    margin: 0 16px
+    &:after
+      content: ''
+      display: block
+      width: 12px
+      height: 12px
+      top: 2px
+      left: 2px
+      position: absolute
+      background: #312B2A
+      border-radius: 50%
+      transition: all .3s ease
+    &._r:after
+      left: 14px
+
+.input
+  @include text-default(400)
+  height: 48px
+  display: block
+  background: #F6F6F6
+  border-radius: 56px
+  padding: 0 20px
+  border: none
+  outline: none
+  transition: all .3s ease
+  border: 1px solid transparent
+  &:hover
+    background: #EDEDED
+  &:focus
+    box-shadow: 0px 8px 20px rgba(88, 82, 77, 0.24)
+    background: #fff
+    border: 1px solid #EDEDED
+  &:not(:placeholder-shown)
+    background: #fff
+    border: 1px solid #EDEDED
+
+.title
+  @include text-default(700)
+  margin: 0 0 16px
+  padding-left: 20px
+
+.settings
+  margin-top: 16px
+  display: flex
+  padding: 12px 24px
+  border-radius: 12px
+  border: 1px solid #EDEDED
+
+.item
+  margin-right: 32px
+  &:last-child
+    margin-right: 0
+
+.row
+  display: flex
+
+
+.make
+  border: none
+  outline: none
+  background: #FAB44C
+  border-radius: 56px
+  @include text-default(500)
+  height: 40px
+  padding: 0 16px
+  color: #fff
+  cursor: pointer
+  transition: all .3s ease
+  position: fixed
+  bottom: 20px
+  right: 20px
+  z-index: 999
+  &:hover
+    box-shadow: 0px 8px 18px rgba(250, 180, 76, 0.6)

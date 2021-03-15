@@ -1,0 +1,83 @@
+@import vars
+@import mixins
+
+.votes
+  width: 100%
+  border-collapse: collapse
+  display: grid
+  grid-template-columns: minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, 100%)
+  thead,
+  tbody,
+  tr
+    display: contents
+
+.head
+  &-cell
+    display: flex
+    align-items: center
+    height: 32px
+    padding: 0 6px
+    background-color: $color-grey-extra-light
+    &:first-child
+      border-top-left-radius: 16px
+      border-bottom-left-radius: 16px
+    &:last-child
+      border-top-right-radius: 16px
+      border-bottom-right-radius: 16px
+
+.body
+  &-cell
+    display: flex
+    align-items: center
+    padding: 12px 6px
+    border-bottom: 1px solid $color-grey-dark
+    &._full
+      grid-column: span 7
+
+.cell
+  @include text-default(400)
+  padding: 4px 12px
+  display: flex
+  border-radius: 8px
+  &._head
+    @include text-sm(700)
+    white-space: nowrap
+    cursor: pointer
+    position: relative
+  &._fixed
+    width: 24px
+    text-align: center
+    justify-content: center
+  &._marked
+    background-color: $color-grey-extra-light
+    &._green
+      background-color: #F1F9E8
+      color: $color-green-dark
+    &._yellow
+      background-color: #FDF8EA
+    &._red
+      background-color: #FAF0EE
+
+
+.sort
+  display: none
+  transform-origin: center
+  position: absolute
+  top: 50%
+  margin-top: -8px
+  right: -4px
+  &._active
+    display: block
+  &._reverse
+    transform: rotate(180deg)
+
+.sort-tick
+  background-image: url($i-tick-black)
+  width: 16px
+  height: 16px
+.abstain
+  background-image: url($i-abstain)
+  height: 20px
+.reject
+  background-image: url($i-reject)
+  height: 20px

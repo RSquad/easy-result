@@ -1,0 +1,54 @@
+<table class="votes">
+  <thead class="head">
+    <tr class="head-row">
+      <th
+        class="head-cell"
+        *ngFor="let col of cols"
+        (click)="onSortClick(col.key)"
+      >
+        <div class="cell _head">
+          {{ col.title }}
+          <div
+            class="sort {{ sort.key === col.key && '_active' }} {{
+              sort.order === 'ASC' && '_reverse'
+            }}"
+          >
+            <div class="g-icon sort-tick"></div>
+          </div>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody class="body">
+    <ng-container *ngFor="let vote of sortedVotes">
+      <tr class="body-row">
+        <td class="body-cell">
+          <div
+            class="cell _fixed _marked _green"
+            *ngIf="vote.type === 'accept'"
+          >
+            {{ vote.points }}
+          </div>
+          <div
+            class="cell _fixed _marked _yellow"
+            *ngIf="vote.type === 'abstain'"
+          >
+            <div class="g-icon abstain"></div>
+          </div>
+          <div class="cell _fixed _marked _red" *ngIf="vote.type === 'reject'">
+            <div class="g-icon reject"></div>
+          </div>
+        </td>
+        <td class="body-cell">
+          <div class="cell">{{ vote.addrJury | prune }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ vote.pkJury | prune }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell">{{ vote.comment }}</div>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

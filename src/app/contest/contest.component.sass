@@ -1,0 +1,64 @@
+@import mixins
+@import vars
+
+.contest
+  &__head
+    padding: 16px 24px
+    margin-bottom: 12px
+  &__title
+    font-weight: 500
+    font-size: 20px
+    line-height: 24px
+    letter-spacing: 0.02em
+    color: #000000
+    margin-bottom: 12px
+  &__row
+    display: flex
+  &__state
+    @include text-default(700)
+    margin-right: 16px
+  &__subms-count
+    @include text-default
+    margin-right: 16px
+  &__state-change
+    @include text-default
+    color: $color-grey
+  &__dates
+    margin-left: auto
+    @include text-default
+    color: $color-grey
+    display: flex
+
+
+  &__info
+    display: flex
+    &-main,
+    &-additional
+      height: 64px
+      border-radius: 12px
+      border: 1px solid #EDEDED
+      display: flex
+      align-items: center
+    &-main
+      background: #EDEDED
+      margin-right: 20px
+    &-additional
+      width: 100%
+    &-item
+      padding: 0 24px
+    &-key
+      @include text-sm(700)
+      color: $color-grey-middle
+      margin-bottom: 8px
+      white-space: nowrap
+    &-value
+      @include text-big(700)
+
+.subms
+  margin-top: 32px
+
+
+.title
+  @include text-big(700)
+  margin: 24px 0 16px
+  padding-left: 20px

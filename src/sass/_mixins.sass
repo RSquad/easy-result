@@ -1,0 +1,35 @@
+@mixin text-default($weight: 500)
+  font-family: 'PT Root', sans-serif
+  font-weight: $weight
+  font-size: 16px
+  line-height: 20px
+  letter-spacing: 0.02em
+@mixin text-sm($weight: 500)
+  font-family: 'PT Root', sans-serif
+  font-weight: $weight
+  font-size: 12px
+  line-height: 16px
+  letter-spacing: 0.02em
+@mixin text-u-sm($weight: 700)
+  font-family: 'PT Root', sans-serif
+  font-weight: $weight
+  font-size: 12px
+  line-height: 16px
+  letter-spacing: 0.75px
+  text-transform: uppercase
+@mixin text-big($weight: 500)
+  font-family: 'PT Root', sans-serif
+  font-weight: $weight
+  font-size: 20px
+  line-height: 24px
+  letter-spacing: 0.02em
+
+@mixin valm()
+  font-size: 0
+  &:after
+    content: ''
+    display: inline-block
+    width: 0
+    height: 100%
+    vertical-align: middle
+

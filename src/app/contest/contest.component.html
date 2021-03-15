@@ -1,0 +1,62 @@
+<div class="contest" *ngIf="contest | async as contest">
+  <div class="contest__head">
+    <div class="contest__title">{{ contest.title }}</div>
+    <div class="contest__row">
+      <div class="contest__state">{{ contest.state | contestState }}</div>
+      <div class="contest__dates">
+        <div class="contest__dates-start">
+          {{ contest.start | date: "MMMM dd, YYYY":"+0000" }}
+        </div>
+        &nbsp;-&nbsp;
+        <div class="contest__dates-end">
+          {{ contest.end | date: "MMMM dd, YYYY, HH:mm":"+0000" }} UTC
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contest__info">
+    <div class="contest__info-main">
+      <div class="contest__info-item">
+        <div class="contest__info-key">Submissions</div>
+        <div class="contest__info-value">{{ contest.totalSubms }}</div>
+      </div>
+      <div class="contest__info-item">
+        <div class="contest__info-key">Jury members</div>
+        <div class="contest__info-value">{{ contest.juryMembers.length }}</div>
+      </div>
+    </div>
+    <div class="contest__info-additional">
+      <div class="contest__info-item">
+        <div class="contest__info-key">Total votes</div>
+        <div class="contest__info-value">{{ contest.totalVotes }}</div>
+      </div>
+      <div class="contest__info-item">
+        <div class="contest__info-key">Accepted</div>
+        <div class="contest__info-value">{{ contest.totalAccepts }}</div>
+      </div>
+      <div class="contest__info-item">
+        <div class="contest__info-key">Abstained</div>
+        <div class="contest__info-value">{{ contest.totalAbstains }}</div>
+      </div>
+      <div class="contest__info-item">
+        <div class="contest__info-key">Rejected</div>
+        <div class="contest__info-value">{{ contest.totalRejects }}</div>
+      </div>
+    </div>
+  </div>
+  <app-settings></app-settings>
+  <div class="subms">
+    <div class="title">Submissions</div>
+    <app-subms
+      [subms]="contest.subms"
+      [contestState]="contest.state"
+    ></app-subms>
+  </div>
+  <div class="jury">
+    <div class="title">Jury</div>
+    <app-jury
+      [jury]="contest.juryMembers"
+      [contestState]="contest.state"
+    ></app-jury>
+  </div>
+</div>

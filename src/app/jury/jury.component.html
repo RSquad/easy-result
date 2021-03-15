@@ -1,0 +1,72 @@
+<table class="jury {{ '_state-' + contestState }}">
+  <thead class="head">
+    <tr class="head-row">
+      <th
+        class="head-cell {{ col.sort && '_sort' }}"
+        *ngFor="let col of contestState === 3 ? cols : cols.slice(0, 7)"
+        (click)="col.sort && onSortClick(col.key)"
+      >
+        <div class="cell _head">
+          {{ col.title }}
+          <div
+            class="sort {{ sort.key === col.key && '_active' }} {{
+              sort.order === 'ASC' && '_reverse'
+            }}"
+          >
+            <div class="g-icon sort-tick"></div>
+          </div>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody class="body">
+    <ng-container *ngFor="let jury of sortedJury">
+      <tr class="body-row">
+        <td class="body-cell">
+          <div class="cell" (click)="onTickClick(jury.addr)">
+            <div class="tick g-icon"></div>
+          </div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ jury.addr | prune }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ jury.totalVotes }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ jury.totalAccepts }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ jury.totalAbstains }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell _marked">{{ jury.totalRejects }}</div>
+        </td>
+        <td class="body-cell">
+          <div class="cell">{{ jury.pk | prune }}</div>
+        </td>
+        <td class="body-cell" *ngIf="contestState == 3">
+          <ng-container *ngIf="jury.totalVotes != 0">
+            <input
+              type="text"
+              class="input"
+              (change)="onRewardChange(jury.addr, $event)"
+            />
+            <div class="input-desc">TON</div>
+          </ng-container>
+          <ng-container *ngIf="jury.totalVotes == 0">
+            <div class="text">
+              Jury member didn't vote and&nbsp;will&nbsp;not get reward
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+      <tr class="body-row" *ngIf="activeJuryId === jury.addr">
+        <td class="body-cell"></td>
+        <td class="body-cell _full">
+          <app-votes [votes]="jury.votes"></app-votes>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

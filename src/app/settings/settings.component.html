@@ -1,0 +1,40 @@
+<div class="settings">
+  <div class="row">
+    <div class="item">
+      <div class="title" style="padding-left: 0">Type</div>
+      <div class="type" (click)="onTypeClick()">
+        <div class="type-option">Points</div>
+        <div class="type-switch {{ type === 'bool' && '_r' }}"></div>
+        <div class="type-option">Yes/No</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="title">Threshold, points</div>
+      <input
+        class="input"
+        [(ngModel)]="points"
+        (change)="onThresholdChange()"
+        placeholder="Points count"
+      />
+    </div>
+    <div class="item">
+      <div class="title">Threshold, rejects</div>
+      <input
+        class="input"
+        [(ngModel)]="rejects"
+        (change)="onThresholdChange()"
+        placeholder="Rejects count"
+      />
+    </div>
+    <div class="item">
+      <div class="title">Threshold, rejects percent</div>
+      <input
+        class="input"
+        [(ngModel)]="percent"
+        (change)="onThresholdChange()"
+        placeholder="Rejects percent"
+      />
+    </div>
+  </div>
+</div>
+<button class="make" (click)="onXlsClick()">Downlaod as .xlsx</button>

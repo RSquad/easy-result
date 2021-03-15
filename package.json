@@ -1,6 +1,7 @@
 {
   "name": "easy-rewards",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "Contests Results Interface by RSquad",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,6 +9,18 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "license": "Apache-2.0",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "author": {
+    "name": "rsquad",
+    "email": "hello@rrstd.ru",
+    "url": "https://rsquad.io"
   },
   "private": true,
   "dependencies": {
@@ -19,8 +32,11 @@
     "@angular/platform-browser": "~11.2.4",
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
+    "@tonclient/core": "^1.10.2",
+    "@tonclient/lib-web": "^1.10.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "xlsx": "^0.16.9",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
@@ -28,7 +44,6 @@
     "@angular/cli": "~11.2.3",
     "@angular/compiler-cli": "~11.2.4",
     "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
